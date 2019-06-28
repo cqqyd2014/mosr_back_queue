@@ -31,7 +31,7 @@ def import_data():
             #解析body中的数据
         import_command=queue.u_body
         print(import_command)
-        os.popen(import_command).read()
+        os.popen(import_command)
         #print(r_import_command)
         current=datetime.datetime.now()
             
