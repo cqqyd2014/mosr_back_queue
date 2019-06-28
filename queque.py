@@ -7,6 +7,7 @@ import datetime
 import uuid
 import time
 from download_data import download_data
+from import_data import import_data
 
 import sys
 sys.path.append("python_common")
@@ -25,4 +26,5 @@ while True:
     
     #
     download_data()
+    import_data()
     time.sleep(int(ps))
