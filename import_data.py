@@ -27,6 +27,8 @@ def import_data():
         #对应的import_data不是删除状态
         
         current=datetime.datetime.now()
+        queue.u_start_datetime=current
+        db_session.commit()
            
             #解析body中的数据
         import_command=queue.u_body
@@ -40,6 +42,7 @@ def import_data():
         queue.u_complete_datetime=current
     db_session.commit()
     db_session.close()
+    #print("导入处理完成")
     #处理下载数据
     #连接数据库
     

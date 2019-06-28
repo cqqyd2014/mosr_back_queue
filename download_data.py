@@ -125,6 +125,7 @@ def download_data():
     db_session.close()
     #处理下载数据
     #连接数据库
+    #print("下载处理完成")
     
 
 def main():
