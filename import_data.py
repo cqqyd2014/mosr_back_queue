@@ -1,3 +1,4 @@
+#encoding=utf-8
 import os
 from neo4j import GraphDatabase
 from mosr_back_orm.orm import create_session,SystemPar,init_db,SystemCode,ProcessDetail,SystemData,QueryTemplate,Neno4jCatalog,JobQueue,ImportData
@@ -10,6 +11,8 @@ import csv
 import sys
 import platform
 import os
+import locale
+import subprocess
 sys.path.append("python_common")
 sys.path.append("mosr_back_orm")
 
@@ -33,8 +36,12 @@ def import_data():
             #解析body中的数据
         import_command=queue.u_body
         print(import_command)
-        os.popen(import_command)
+        #r_import_command=
+        child1 = subprocess.check_output(import_command)
+        #print(child1.decode('utf-8'))
+        
         #print(r_import_command)
+        queue.u_back_message=child1.decode('utf-8')
         current=datetime.datetime.now()
             
         queue.u_status='处理完成'
