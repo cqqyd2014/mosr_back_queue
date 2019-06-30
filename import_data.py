@@ -36,8 +36,9 @@ def import_data():
             #解析body中的数据
         import_command=queue.u_body
         print(import_command)
+        impor_array=import_command.split(' ')
         #r_import_command=
-        child1 = subprocess.check_output(import_command)
+        child1 = subprocess.check_output(impor_array)
         #print(child1.decode('utf-8'))
         
         #print(r_import_command)
