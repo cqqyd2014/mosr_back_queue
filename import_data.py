@@ -47,6 +47,8 @@ def import_data():
         queue.u_status='处理完成'
 
         queue.u_complete_datetime=current
+        
+
     db_session.commit()
     db_session.close()
     #print("导入处理完成")
