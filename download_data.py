@@ -24,6 +24,9 @@ def make_headers(column_items,body_dict):
                 headers.append(item[0]+":ID")
             elif item[2]=='显示名称':
                 headers.append("显示名称:"+item[1])
+            elif item[2]=='不导入':
+                pass
+                
             else:
                 headers.append(item[0]+":"+item[1])
     else:
@@ -33,6 +36,8 @@ def make_headers(column_items,body_dict):
                 headers.append(":START_ID")
             elif item[2]=='终点':
                 headers.append(":END_ID")
+            elif item[2]=='不导入':
+                pass
             else:
                 headers.append(item[0]+":"+item[1])
     return headers
@@ -100,7 +105,7 @@ def download_data():
                 os.remove(import_neo4j_install_dir+"import/"+queue.u_uuid)
             #print("start")
             with open(import_neo4j_install_dir+"import/"+queue.u_uuid,'w', encoding='utf-8',newline='')as f:
-                f_csv = csv.writer(f)
+                f_csv = csv.writer(f,quoting=csv.QUOTE_ALL)
                 f_csv.writerow(make_headers(column_items,body_dict))
                 
                 while (rows!=[]):
