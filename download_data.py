@@ -112,6 +112,8 @@ def download_data():
                     f_csv.writerows(rows)
                     #print(rows)
                     rows=database.getBatchCursorRows(download_batch)
+                   
+                    
 
             importData.u_rowcount=database.getBatchCursorRowCount()
             database.closeBatchCursor()
