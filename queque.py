@@ -9,6 +9,8 @@ import time
 from download_data import download_data
 from import_data import import_data
 from clean_neo4j import clean_neo4j
+from neo4j_command import neo4j_command
+from algoUnionFind import unionFind
 
 import sys
 sys.path.append("python_common")
@@ -29,4 +31,6 @@ while True:
     download_data()
     import_data()
     clean_neo4j()
+    neo4j_command()
+    unionFind()
     time.sleep(int(ps))
