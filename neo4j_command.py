@@ -16,7 +16,7 @@ def neo4j_command():
                 queue.u_start_datetime=current
                 db_session.commit()
                 body=queue.u_body
-                print(command)
+                print(body)
                 command(body,None)
                 current=datetime.datetime.now()
                 queue.u_complete_datetime=current
