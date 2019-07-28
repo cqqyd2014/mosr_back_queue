@@ -7,6 +7,7 @@ from python_common.neo4j_common import command
 import time
 import uuid
 import datetime
+from opendb_getjob import opendb_getjob
 
 
 
@@ -46,20 +47,16 @@ def readData(command_sql,records):
 
 
 def unionFind():
-        db_session=create_session()
-        queue=db_session.query(JobQueue).filter(JobQueue.u_status=='发布',JobQueue.u_declare_key=='algo.unionFind',JobQueue.u_publisher_id=='algo.unionFind').order_by(JobQueue.u_publish_datetime.desc()).first()
-        job=queue
-        if (queue!=None):
-                current=datetime.datetime.now()
-                queue.u_start_datetime=current
-                db_session.commit()
-                body=queue.u_body
-                print(body)
-                rs_uuid=command(body,readData)
-                current=datetime.datetime.now()
-                queue.u_complete_datetime=current
-                queue.u_status='处理完成'
-                queue.u_back_message=rs_uuid
-                db_session.commit()
-        db_session.close()
-        #print("ok")
+        opendb_getjob('algo.unionFind',job)
+    
+def job(db_session,queue,current):
+       
+        body=queue.u_body
+        print(body)
+        rs_uuid=command(body,readData)
+        current=datetime.datetime.now()
+        
+        queue.u_back_message=rs_uuid
+        db_session.commit()
+        return current
+        
